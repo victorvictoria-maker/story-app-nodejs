@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDatabase = require('./config/db'); 
-const morgan = require('morgan');
+// const morgan = require('morgan');
 
 // Load ENV Config
 dotenv.config({path: './config/config.env'});
@@ -10,9 +10,9 @@ dotenv.config({path: './config/config.env'});
 connectDatabase();
 
 const app = express();
-if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
-};
+// if (process.env.NODE_ENV === 'development') {
+//     app.use(morgan('dev'));
+// };
 
 const PORT = process.env.PORT || 5000;
 
