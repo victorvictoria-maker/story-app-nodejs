@@ -6,8 +6,8 @@ const connectDB = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             // useFindAndModify: false
-            retryWrites: true,
-            w: "majority",
+            // retryWrites: true,
+            // w: "majority",
         });
 
         console.log(`MONGODB Connected: ${conn.connection.host}`);
