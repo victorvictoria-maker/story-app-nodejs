@@ -2,9 +2,12 @@ const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 const passport = require('passport');
-const session = require('express-session');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
+// connect-mongo is used to store session in the database
+const MongoStore = require('connect-mongo');
 
 const connectDatabase = require('./config/db'); 
 
@@ -38,7 +41,12 @@ app.set('view engine', '.hbs');
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+
+    // store: new MongoStore({mongooseConnection: mongoose.connection})
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URL
+    })
 }));
 
 // passport middleware
