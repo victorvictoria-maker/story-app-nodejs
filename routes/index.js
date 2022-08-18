@@ -20,10 +20,18 @@ router.get('/', ensureGuest, (req, res) => {
 router.get('/dashboard', ensureAuth, async (req, res) => {
     try {
         const user = await User.find().lean();
+        let index = user.findIndex(x => x._id == req.user.id);
+        const thisUser = user[index];
+        const thisUserId = thisUser._id;
+        const userId = thisUserId.toString();
+
         const stories = await Story.find({user: req.user.id}).lean();
+        console.log(req.user.id);
+        console.log(userId);
+        console.log(stories);
         
         res.render('dashboard', {
-            name: user[0].firstName,
+            name: thisUser.lastName,
             stories
         });
     } catch (err) {

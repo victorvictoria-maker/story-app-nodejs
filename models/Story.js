@@ -18,6 +18,8 @@ const StorySchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User' 
+        // type: String,
+        // default: '62fcd4308bf03d5179aac30d'
     }, 
     createdAt: {
         type: Date,
